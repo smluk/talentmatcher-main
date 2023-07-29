@@ -1,68 +1,78 @@
 @section('aside')
-    @parent
 
-<div cstyle="overflow: scroll ;max-height: 250px; width: 50%;">
-<table class = "table table-sm" id="assign_table">
-    <thead>
-        <tr>
-            <th>Comments</th>
-        </tr>
-    </thead>
-   <!-- The comments will be inserted here via AJAX -->
-    <tbody id = "comments">
-    </tbody>
-</table>
-
-<form id="comment-form">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <input type="hidden" name="event_id" value="{{ $event->id}}">
-    <textarea name="body"></textarea>
-    <button type="submit">Submit</button>
-</form>
+<div class="comments">
+    <h3>Comments</h3>
+    <ul id="comment-list">
+        <!-- Display comments here -->
+    </ul>
+    <div class="new-comment-box">
+        <h4>Add a comment</h4>
+        <form id="add-comment-form">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+            <input type="hidden" name="event_id" value="{{ $event->id }}" />
+            <div class="form-group">
+                <label for="comment-text">Comment:</label>
+                <textarea class="form-control" id="comment-text" name="body" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 </div>
 
+<script>
 
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
-<script>  
 $(document).ready(function() {
-    // Define a fetch comment function for reuse
-    function fetchComments(comment){
-                var date = new Date(comment.created_at);
-                date = Intl.DateTimeFormat('en-US').format(date);
-                $('#comments').append('<tr><td>' + comment.body + ' ('+ comment.user_id + ' on ' + date + ')</td></tr>');
-            }
-    
-            
-    function loadAllComments(event_id) {
-        $.get('/comments/' , {event_id: event_id},
-            function(data) {
-                data.forEach(function(comment) {
-                    fetchComments(comment);
-                });
-            }
-        );
-    }
+    // Retrieve comments on page load
+    getComments();
 
-    // Load comments on page load
-    var event_id = {{ $event->id }};
-    loadAllComments(event_id);
-
-    // Submit form
-    $('#comment-form').on('submit', function(e) {
-        $.ajaxSetup({
+    // Submit new comment on form submit
+    $('#add-comment-form').on('submit', function(event) {
+         $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }});
-        e.preventDefault();
-        $.post('/comments', $(this).serialize())         
+        event.preventDefault();
+        $.ajax({
+            url: '/comments/add',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#add-comment-form').serialize(),
+
+            success: function(response) {
+                // Clear form fields
+                $('#comment-text').val('');
+                // Add new comment to list
+                var html = '<li><p>' + response.body + '</p><small>Posted on ' + response.created_at + '</small></li>';
+                $('#comment-list').prepend(html);
+            }
+            
+        });
     });
-/*
-    setInterval(function(){
-        $('#comments').empty();
-        loadAllComments(event_id);
-    }, 5000) /* time in milliseconds (ie 2 seconds)*/
+
+    // Periodically update comments
+    setInterval(function() {
+        getComments();
+    }, 50000);
 });
+
+function getComments() {
+    $.ajax({
+        url: '/comments/get/{{ $event->id }}',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            var html = '';
+            $.each(response, function(index, comment) {
+                var date = new Date(comment.created_at);
+                date = Intl.DateTimeFormat('en-US').format(date);
+                html += '<li><p>' + comment.body + '</p><small>Posted on ' + date + '</small></li>';
+            });
+            $('#comment-list').html(html);
+        }
+            
+    });
+}
+
+
 </script>
 @endsection

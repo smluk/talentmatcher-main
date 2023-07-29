@@ -13,9 +13,6 @@ class CommentController extends Controller
      */
     public function index(Request $request)
     {  
-        $event_id = $request->get('event_id');
-        $comments = Comment::where('event_id', '=', $event_id)->get();	
-        return response()->json($comments);
     }
 
     /**
@@ -31,11 +28,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $comment = new Comment($request->all());
-        $comment->user_id = auth()->user()->id;
-        $comment->save();
 
-        return response()->json($comment);
     }
 
     /**
@@ -69,4 +62,19 @@ class CommentController extends Controller
     {
         //
     }
+    
+    public function getComments($event_id)
+    {
+        $comments = Comment::where('event_id', $event_id)->orderBy('created_at', 'desc')->get();
+        return response()->json($comments);
+    }
+
+    public function addComment(Request $request)
+    {
+        $comment = new Comment($request->all());
+        $comment->user_id = auth()->user()->id;
+        $comment->save();
+        return response()->json($comment);
+    }
+
 }

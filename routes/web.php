@@ -26,8 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('event');
 Route::post('/eventsupdate', [App\Http\Controllers\EventController::class, 'update'])->name('eventupdate');
 
-Route::get('/comments', 'App\Http\Controllers\CommentController@index');
-Route::post('/comments', 'App\Http\Controllers\CommentController@store');
+Route::get('/comments/get/{event_id}', 'App\Http\Controllers\CommentController@getComments');
+Route::post('/comments/add', 'App\Http\Controllers\CommentController@addComment');
+
 
 Route::get('/events/mine', [App\Http\Controllers\EventController::class, 'mine'])->name('events.mine');
 Route::get('/useredit/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
