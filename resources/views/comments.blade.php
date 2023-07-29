@@ -1,13 +1,12 @@
 <div class="comments">
-    <h3>Comments</h3>
+    <h4>Comments</h4>
     <ul id="comment-list">
         <!-- Display comments here -->
     </ul>
     <div class="new-comment-box">
-        <h4>Add a comment</h4>
         <form id="add-comment-form" name="add-comment-form">
             <div class="form-group">
-                <label for="comment-text">Comment:</label>
+                <label for="comment-text">Add a Comment:</label>
                 <textarea class="form-control" id="body" name="body" rows="3" form = "add-comment-form" placeholder = "Input comment here"></textarea>
             </div>
                        <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,7 +18,6 @@
 
 
 <script>
-
 $(document).ready(function() {
     // Retrieve comments on page load
     getComments();
@@ -43,7 +41,7 @@ $(document).ready(function() {
                 // Add new comment to list
                 var date = new Date(response.created_at);
                 date = Intl.DateTimeFormat('en-US').format(date);
-                var html = '<li><p>' + response.body + '</p><small>Posted on ' + date + '</small></li>';
+                var html = '<li><small>' + date + '&emsp;&emsp;' + response.body + '</small></li>';
                 $('#comment-list').prepend(html);
             }
             
@@ -66,7 +64,7 @@ function getComments() {
             $.each(response, function(index, comment) {
                 var date = new Date(comment.created_at);
                 date = Intl.DateTimeFormat('en-US').format(date);
-                html += '<li><p>' + comment.body + '</p><small>Posted on ' + date + '</small></li>';
+                html += '<li><small>' + date + '&emsp;&emsp;' + comment.body  + '</small></li>';
             });
             $('#comment-list').html(html);
         }

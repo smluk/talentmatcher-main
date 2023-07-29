@@ -29,6 +29,26 @@
             <td class="field">Event Name</td>
             <td class="value">{{ $event->event_name }}</td>
         </tr>
+            <td class="field">Event Type</td>
+            <td class="value"><?php if ( $event->event_type  = 1) echo "Face to Face"; else echo "Remote"; ?></td>
+        </tr>
+        <tr>
+            <td class="field">Event Category</td>
+            <td class="value">
+              <?php if ( $event->event_category  = 1) echo "Web Development"; 
+              else if ( $event->event_category  = 2) echo "Social Media Marketing"; 
+              else if ( $event->event_category = 3) echo "Event Planning"; 
+              else if ( $event->event_category = 4) echo "Media Production"
+              ?></td>
+        </tr>
+        <tr>
+            <td class="field">Event Start Date Time</td>
+            <td class="value">{{ $event->event_start_datetime }}</td>
+        </tr>
+        <tr>
+            <td class="field">Event End Date Time</td>
+            <td class="value">{{ $event->event_end_datetime }}</td>
+        </tr>
         <tr>
             <td class="field">Description</td>
             <td class="value">{{ $event->event_description }}</td>
@@ -49,6 +69,9 @@
     </tbody>
 </section>
 </div>
+
 @include('comments')
+
+
 @endsection
 
