@@ -1,5 +1,3 @@
-@section('aside')
-
 <div class="comments">
     <h3>Comments</h3>
     <ul id="comment-list">
@@ -7,17 +5,18 @@
     </ul>
     <div class="new-comment-box">
         <h4>Add a comment</h4>
-        <form id="add-comment-form">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-            <input type="hidden" name="event_id" value="{{ $event->id }}" />
+        <form id="add-comment-form" name="add-comment-form">
             <div class="form-group">
                 <label for="comment-text">Comment:</label>
-                <textarea class="form-control" id="comment-text" name="body" rows="3"></textarea>
+                <textarea class="form-control" id="body" name="body" rows="3" form = "add-comment-form" placeholder = "Input comment here"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+                       <meta name="csrf-token" content="{{ csrf_token() }}">
+            <input type="hidden" id="event_id" name="event_id" value="{{ $event->id }}" form = "add-comment-form" >
+            <button type="submit" class="btn btn-primary" form = "add-comment-form" >Submit</button>
+          </form>
     </div>
 </div>
+
 
 <script>
 
@@ -27,11 +26,11 @@ $(document).ready(function() {
 
     // Submit new comment on form submit
     $('#add-comment-form').on('submit', function(event) {
-         $.ajaxSetup({
+        event.preventDefault();
+        $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }});
-        event.preventDefault();
         $.ajax({
             url: '/comments/add',
             type: 'POST',
@@ -40,9 +39,11 @@ $(document).ready(function() {
 
             success: function(response) {
                 // Clear form fields
-                $('#comment-text').val('');
+                $('#body').val('');
                 // Add new comment to list
-                var html = '<li><p>' + response.body + '</p><small>Posted on ' + response.created_at + '</small></li>';
+                var date = new Date(response.created_at);
+                date = Intl.DateTimeFormat('en-US').format(date);
+                var html = '<li><p>' + response.body + '</p><small>Posted on ' + date + '</small></li>';
                 $('#comment-list').prepend(html);
             }
             
@@ -75,4 +76,3 @@ function getComments() {
 
 
 </script>
-@endsection

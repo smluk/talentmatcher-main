@@ -49,5 +49,6 @@ Route::get('/search/talent', [App\Http\Controllers\SearchController::class, 'get
 
 Route::resource('events', EventController::class);
 Route::resource('comments', CommentController::class);
+Route::resource('users', UserController::class);
 
 

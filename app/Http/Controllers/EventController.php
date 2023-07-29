@@ -6,6 +6,7 @@ use Attribute;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Comment;
+use App\Models\User;
 use App\Models\Search;
 use App\Models\Appointment;
 use App\Http\Requests\EventStoreRequest;
@@ -63,13 +64,16 @@ class EventController extends Controller
     public function show(string $id)
     {
         $event = Event::findOrFail($id);
+        $uid = $event->user_id;
+        $user = User::findOrfail($uid);
+
         $skills = Search::where('bind_id','=',$id)->where('state','=','1')->where('type','=','job')->get();
         $skill_list=array();
         foreach($skills as $skill){
             array_push($skill_list,$skill->skill_id);
         }
         $skill_names=["1"=>"C","2"=>"C++","3"=>"PHP","4"=>"Python","5"=>"JavaScript","6"=>"Go","7"=>"Ruby","8"=>"Rust"];
-        return view('events.show', compact('event','skill_list','skill_names'));
+        return view('events.show', compact('event', 'user', 'skill_list','skill_names'));
         //Show the details of selected event
     }
 
