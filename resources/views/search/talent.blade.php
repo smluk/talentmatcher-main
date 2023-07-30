@@ -33,21 +33,21 @@
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio0" autocomplete="off" checked>
   <label class="btn btn-outline-primary" for="vbtn-radio0">ALL</label>
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio1" autocomplete="off">
-  <label class="btn btn-outline-primary" for="vbtn-radio1">C</label>
+  <label class="btn btn-outline-primary" for="vbtn-radio1">Photography</label>
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
-  <label class="btn btn-outline-primary" for="vbtn-radio2">C++</label>
+  <label class="btn btn-outline-primary" for="vbtn-radio2">Programming</label>
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
-  <label class="btn btn-outline-primary" for="vbtn-radio3">PHP</label>
+  <label class="btn btn-outline-primary" for="vbtn-radio3">Graphic design</label>
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
-  <label class="btn btn-outline-primary" for="vbtn-radio4">Python</label>
+  <label class="btn btn-outline-primary" for="vbtn-radio4">Copywriting</label>
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio5" autocomplete="off">
-  <label class="btn btn-outline-primary" for="vbtn-radio5">JavaScript</label>
+  <label class="btn btn-outline-primary" for="vbtn-radio5">Public speaking</label>
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio6" autocomplete="off">
-  <label class="btn btn-outline-primary" for="vbtn-radio6">Go</label>
+  <label class="btn btn-outline-primary" for="vbtn-radio6">Financial analysis</label>
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio7" autocomplete="off">
-  <label class="btn btn-outline-primary" for="vbtn-radio7">Ruby</label>
+  <label class="btn btn-outline-primary" for="vbtn-radio7">Project management</label>
   <input type="radio" class="btn-check skill" name="vbtn-radio" id="vbtn-radio8" autocomplete="off">
-  <label class="btn btn-outline-primary" for="vbtn-radio8">Rust</label>
+  <label class="btn btn-outline-primary" for="vbtn-radio8">Digital marketing</label>
 </div>
 </div>  
 </div>

@@ -12,14 +12,14 @@ var map;
 var marker;
 var pos;
 async function initMap() {
-  // The location of Uluru
-  pos = { lat: -25.344, lng: 131.031 };
+  // The location of HKU
+  pos = { lat: 22.3016066, lng: 114.0924553 };
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-  // The map, centered at Uluru
+  // The map, centered at HKU
   map = new Map(document.getElementById("map"), {
     zoom: 12,
     center: pos,

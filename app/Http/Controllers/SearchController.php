@@ -46,7 +46,7 @@ class SearchController extends Controller
             foreach($result as $rr){
                 $skills = Search::where('bind_id','=',$rr['id'])->where('type','=','job')->where('state','=','1')->get();
                 $s='';
-                $skill_names=["1"=>"C","2"=>"C++","3"=>"PHP","4"=>"Python","5"=>"JavaScript","6"=>"Go","7"=>"Ruby","8"=>"Rust"];
+                $skill_names=["1"=>"All","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing","9"=>"Photography"];
                 foreach($skills as $skill){
                     $s.=<<<str
                     <span class="badge text-bg-primary">{$skill_names[$skill->skill_id]}</span> 
@@ -118,7 +118,7 @@ class SearchController extends Controller
             foreach($result as $rr){
                 $skills = Search::where('bind_id','=',$rr['id'])->where('type','=','talent')->where('state','=','1')->get();
                 $s='';
-                $skill_names=["1"=>"C","2"=>"C++","3"=>"PHP","4"=>"Python","5"=>"JavaScript","6"=>"Go","7"=>"Ruby","8"=>"Rust"];
+                $skill_names=["1"=>"All","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing"];
                 foreach($skills as $skill){
                     $s.=<<<str
                     <span class="badge text-bg-primary">{$skill_names[$skill->skill_id]}</span> 
