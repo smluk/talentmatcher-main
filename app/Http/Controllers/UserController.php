@@ -21,7 +21,7 @@ class UserController extends Controller
         foreach($skills as $skill){
             array_push($skill_list,$skill->skill_id);
         }
-        $skill_names=["1"=>"C","2"=>"C++","3"=>"PHP","4"=>"Python","5"=>"JavaScript","6"=>"Go","7"=>"Ruby","8"=>"Rust"];
+        $skill_names=["1"=>"All","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing","9"=>"Photography"];
         return view('user.index', compact('user','id','skill_list','skill_names'));
     }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
         foreach($skills as $skill){
             array_push($skill_list,$skill->skill_id);
         }
-        $skill_names=["1"=>"C","2"=>"C++","3"=>"PHP","4"=>"Python","5"=>"JavaScript","6"=>"Go","7"=>"Ruby","8"=>"Rust"];
+        $skill_names=["1"=>"All","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing","9"=>"Photography"];
         return view('user.edit', compact('user','id','skill_list','skill_names'));
     }
 
