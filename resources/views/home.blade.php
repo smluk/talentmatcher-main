@@ -7,9 +7,9 @@
             <h1 class="title1">Talent Matcher</h1>
             <h2 class="title2">Start Your Project Here!</h2>
             <div class="input-group mb-3">
-            <button id="select" class="btn btn-outline-secondary dropdown-toggle btn-select" type="button" data-bs-toggle="dropdown" aria-expanded="false">Job</button>
+            <button id="select" class="btn btn-outline-secondary dropdown-toggle btn-select" type="button" data-bs-toggle="dropdown" aria-expanded="false">Project</button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:selectjob();">Job</a></li>
+                <li><a class="dropdown-item" href="javascript:selectjob();">Project</a></li>
                 <li><a class="dropdown-item" href="javascript:selecttalent();">Talent</a></li>
             </ul>
             <input id="s" type="text" class="form-control search-input" aria-label="Search">
@@ -31,7 +31,7 @@
         path: '/data.json'
         });
     function selectjob(){
-        document.getElementById("select").innerText="Job";
+        document.getElementById("select").innerText="Project";
         now="job";
     }
     function selecttalent(){

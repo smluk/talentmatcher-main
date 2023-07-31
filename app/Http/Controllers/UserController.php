@@ -75,7 +75,7 @@ class UserController extends Controller
 
         $user = User::where('id', '=', Auth::user()->id)->get()[0];
         $user->update($validated);
-        return redirect()->route('user',Auth::user()->id)->with('success', 'Event updated successfully.');
+        return redirect()->route('user',Auth::user()->id)->with('success', 'Profile updated successfully.');
     }
 
     /**

@@ -6,7 +6,6 @@ use Attribute;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Comment;
-use App\Models\User;
 use App\Models\Search;
 use App\Models\Appointment;
 use App\Http\Requests\EventStoreRequest;
@@ -34,7 +33,8 @@ class EventController extends Controller
     public function create()
     {
         $event = new Event();
-        return view('events.create', compact('event'));
+        $skill_names=["1"=>"Photography","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing"];
+        return view('events.create', compact('event','skill_names'));
         //Create a new event
     }
 
@@ -53,6 +53,16 @@ class EventController extends Controller
 
         $event = new Event($validated);
         $event->save();
+        $r = $request->toArray();
+        var_dump($r);
+        for($i=1;$i<=8;$i++){
+            if(isset($r['btn_'.$i])&&$r['btn_'.$i]=='on'){
+                Search::create(['type'=>'job','bind_id'=>$event->id,'state'=>1,'skill_id'=>$i]);
+            }else{
+                Search::create(['type'=>'job','bind_id'=>$event->id,'state'=>0,'skill_id'=>$i]);
+            }
+        }
+        //return Response($request->toArray());
         //Create new event with validated request
 
         return back()->with('success', 'Event created successfully.');
@@ -64,16 +74,13 @@ class EventController extends Controller
     public function show(string $id)
     {
         $event = Event::findOrFail($id);
-        $uid = $event->user_id;
-        $user = User::findOrfail($uid);
-
         $skills = Search::where('bind_id','=',$id)->where('state','=','1')->where('type','=','job')->get();
         $skill_list=array();
         foreach($skills as $skill){
             array_push($skill_list,$skill->skill_id);
         }
-        $skill_names=["1"=>"All","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing","9"=>"Photography"];
-        return view('events.show', compact('event', 'user', 'skill_list','skill_names'));
+        $skill_names=["1"=>"Photography","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing"];
+        return view('events.show', compact('event','skill_list','skill_names'));
         //Show the details of selected event
     }
 
@@ -93,7 +100,7 @@ class EventController extends Controller
         foreach($skills as $skill){
             array_push($skill_list,$skill->skill_id);
         }
-        $skill_names=["1"=>"All","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing"];
+        $skill_names=["1"=>"Photography","2"=>"Programming","3"=>"Graphic design","4"=>"Copywriting","5"=>"Public speaking","6"=>"Financial analysis","7"=>"Project management","8"=>"Digital marketing"];
         return view('events.edit', compact('event','skill_list','skill_names'));
         //Show the form for editing the selected event
     }
