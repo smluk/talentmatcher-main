@@ -55,7 +55,7 @@
     
     <div class="row">
         <div class="col-md-12 col-lg-12 col-xl-12">
-            <h2>Results:</h2>
+        <h2 id="restitle">Results:</h2>
         </div>
         <div id="insert" class="col-md-12 col-lg-12 col-xl-12 row">
         </div>

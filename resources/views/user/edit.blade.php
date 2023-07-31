@@ -52,7 +52,7 @@
         </tr>
     </tbody>
   </table>
-  <button class='btn btn-primary' type="submit">Edit</button>
+  <button class='btn btn-primary' type="submit">Confirm</button>
   </form>
 </div>
   </content>

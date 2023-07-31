@@ -81,6 +81,10 @@
                         <td><label for="name" >Event Description</label></td>
                         <td><input name="event_description" type="text" class="form-control" value ="{{old('event_description')}}"/></td>
                 </tr>
+                <td>Skills</td>
+            <td><div class="btn-group" role="group" aria-label="Basic checkbox toggle button group"><?php for($i=1;$i<=8;$i++){echo '<input type="checkbox" class="btn-check talent-btn form-control" id="btn-'.$i.'" name="btn_'.$i.'" autocomplete="off">
+  <label class="btn btn-outline-primary" for="btn-'.$i.'">'.$skill_names[(string)$i].'</label><br>';} ?></div></td>
+        </tr>
                  <tr>
                         <td></td><td><button type="submit" class="btn btn-primary">Add</button></td>
                 </tr>

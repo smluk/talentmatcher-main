@@ -15,6 +15,7 @@ $(function() {
 		url : "/search",
 		data : {"type":'talent',"keyword":$keyword,"skill_id":$nowcheck},
 		success : function(data) {
+			$("#restitle").html(data.split("card2").length-1+" Results:")
 			$("#insert").html(data);
 		}
 	});
@@ -25,6 +26,7 @@ $(function() {
 			url : "/search",
 			data : {"type":'talent',"keyword":$keyword,"skill_id":$nowcheck},
 			success : function(data) {
+				$("#restitle").html(data.split("card2").length-1+" Results:")
 				$("#insert").html(data);
 			}
 		});
@@ -40,6 +42,7 @@ $(function() {
 			url : "/search",
 			data : {"type":'talent',"keyword":$keyword,"skill_id":$nowcheck},
 			success : function(data) {
+				$("#restitle").html(data.split("card2").length-1+" Results:")
 				$("#insert").html(data);
 			}
 		});
