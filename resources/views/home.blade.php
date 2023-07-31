@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@guest
 @section('content')
 <div class="container bg">
     <div class="row align-items-center">
@@ -10,7 +11,9 @@
             <button id="select" class="btn btn-outline-secondary dropdown-toggle btn-select" type="button" data-bs-toggle="dropdown" aria-expanded="false">Project</button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="javascript:selectjob();">Project</a></li>
+                @auth
                 <li><a class="dropdown-item" href="javascript:selecttalent();">Talent</a></li>
+                @endauth
             </ul>
             <input id="s" type="text" class="form-control search-input" aria-label="Search">
             <button  class="btn btn-outline-secondary btn-search" type="button" onclick="search();">Search</button>
@@ -52,3 +55,14 @@
 }
 </component>
 @endsection
+@endguest
+
+@auth
+@section('content')
+<div class = "container">
+<h1>Welcome Back</h1> <h4>{{ Auth::user()->name }}!</h4>
+
+<p>Today is {{ date('l, F d, Y') }}.</p>
+</div>
+@endsection
+@endauth
