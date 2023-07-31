@@ -23,7 +23,7 @@
      <tbody>
         <tr>
             <td class="field">User</td>
-            <td class="value"><a href="/user/{{$user->id}}">{{$user->name}}</a></td>
+            <td class="value"><a href="/user/{{$event->user_id}}">Profile</a></td>
         </tr>
         <tr>
             <td class="field">Event Name</td>
