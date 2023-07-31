@@ -22,7 +22,7 @@
 
 <content class="container">
   <div class="card">
-  <h2 style="width:80%;">User Profile</h2><?php  if(Auth::user()->id==$user[0]->id) echo "<span style='width:10%;'><a href='/useredit/{$user[0]->id}'><button class='btn btn-primary'>Edit</button></a></span>"; ?>
+  <h2 style="width:80%;">User Profile</h2>
   <table class="table table-striped">
     <tbody>
         <tr>
@@ -49,7 +49,12 @@
         </tr>
     </tbody>
   </table>
+  @if(Auth::user()->id!=$user[0]->id)
   <a href='/chat/{{$user[0]->id}}'><button class='btn btn-primary'>Chat With Me!</button></a>
+  @endif
+  @if(Auth::user()->id==$user[0]->id)
+  <a href='/useredit/{{$user[0]->id}}'><button class='btn btn-primary'>Edit</button></a>
+  @endif
 
 </div>
   </content>

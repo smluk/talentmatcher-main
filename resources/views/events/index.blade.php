@@ -29,9 +29,9 @@
   <table class="table table-striped table-hover">
     <thead class="table-head">
         <tr>
-          <td>Event Name</td>
-          <td>Event Type</td>
-          <td>Event Location</td>
+          <td>Name</td>
+          <td>Type</td>
+          <td>Location</td>
           <td>Appointment</td>
        </tr>
     </thead>

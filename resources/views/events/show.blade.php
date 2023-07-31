@@ -23,17 +23,17 @@
      <tbody>
         <tr>
             <td class="field">User</td>
-            <td class="value"><a href="/user/{{$event->user_id}}">Profile</a></td>
+            <td class="value"><a href="/user/{{$event->user_id}}">{{$user->name}}</a></td>
         </tr>
         <tr>
-            <td class="field">Event Name</td>
+            <td class="field">Name</td>
             <td class="value">{{ $event->event_name }}</td>
         </tr>
-            <td class="field">Event Type</td>
+            <td class="field">Type</td>
             <td class="value"><?php if ( $event->event_type  = 1) echo "Face to Face"; else echo "Remote"; ?></td>
         </tr>
         <tr>
-            <td class="field">Event Category</td>
+            <td class="field">Category</td>
             <td class="value">
               <?php if ( $event->event_category  = 1) echo "Web Development"; 
               else if ( $event->event_category  = 2) echo "Social Media Marketing"; 
@@ -42,11 +42,11 @@
               ?></td>
         </tr>
         <tr>
-            <td class="field">Event Start Date Time</td>
+            <td class="field">Date Time</td>
             <td class="value">{{ $event->event_start_datetime }}</td>
         </tr>
         <tr>
-            <td class="field">Event End Date Time</td>
+            <td class="field">End Date Time</td>
             <td class="value">{{ $event->event_end_datetime }}</td>
         </tr>
         <tr>
