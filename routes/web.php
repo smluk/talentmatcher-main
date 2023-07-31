@@ -35,9 +35,9 @@ Route::get('/useredit/{id}', [App\Http\Controllers\UserController::class, 'edit'
 Route::post('/edituser', [App\Http\Controllers\UserController::class, 'update'])->name('update');
 Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 
-Route::get('/appointment/{id}', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment');
-Route::get('/appointment/set/{event_id}', [App\Http\Controllers\AppointmentController::class, 'create'])->name('appointment.create');
-Route::post('/appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
+Route::get('/appointment/{id}', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment')->middleware('auth');
+Route::get('/appointment/set/{event_id}', [App\Http\Controllers\AppointmentController::class, 'create'])->name('appointment.create')->middleware('auth');
+Route::post('/appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store')->middleware('auth');
 
 Route::get('/chat/{id?}', [App\Http\Controllers\ChatController::class, 'index'])->name('chat');
 
