@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
-@guest
 @section('content')
 <div class="container bg">
     <div class="row align-items-center">
         <div class="col-md-8 col-lg-5">
+            @guest
             <h1 class="title1">Talent Matcher</h1>
             <h2 class="title2">Start Your Project Here!</h2>
+            @endguest
+            @auth
+            <h1 class="title1">{{ Auth::user()->name }}</h1>
+            <h2 class="title2">Welcome Back!</h2>
+            @endauth
             <div class="input-group mb-3">
             <button id="select" class="btn btn-outline-secondary dropdown-toggle btn-select" type="button" data-bs-toggle="dropdown" aria-expanded="false">Project</button>
             <ul class="dropdown-menu">
@@ -55,14 +60,6 @@
 }
 </component>
 @endsection
-@endguest
 
-@auth
-@section('content')
-<div class = "container">
-<h1>Welcome Back</h1> <h4>{{ Auth::user()->name }}!</h4>
 
-<p>Today is {{ date('l, F d, Y') }}.</p>
-</div>
-@endsection
-@endauth
+
