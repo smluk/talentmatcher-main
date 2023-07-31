@@ -1,8 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  .uper {
+    margin-top: 40px;
+  }
+</style>
 
-<content class="container">
+
+<div class="message">
+        @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br/>
+    @endif
+</div>
+<div class="uper">
+  @if(session()->get('success'))
+    <div class="alert alert-success">
+      {{ session()->get('success') }}  
+    </div><br/>
+  @endif
+</div>
+<div class="card container">
+  <h2>My Events</h2>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -25,6 +50,6 @@
         @endforeach
     </tbody>
   </table>
-  </content>
+</div>
 
 @endsection

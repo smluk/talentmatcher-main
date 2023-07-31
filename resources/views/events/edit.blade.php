@@ -7,9 +7,6 @@
     margin-top: 40px;
   }
 </style>
-<div class="title">
-    Edit Event
-</div>
 <div class="message">
         @if ($errors->any())
       <div class="alert alert-danger">
@@ -28,7 +25,10 @@
     </div><br/>
   @endif
 </div>
-<content class="container">
+<div class="card container">
+<div class="title">
+    <h2>Edit Event<h2>
+</div>
     <form method="post" action="{{ route('eventupdate') }}">
     @csrf
                 <table class="table">
@@ -96,11 +96,7 @@
                 </table>
     </form>
 
-    </content>
+                        </div>
 
-    <script>
-
-
-    </script>
 
 @endsection

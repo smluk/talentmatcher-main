@@ -3,6 +3,7 @@
     <ul id="comment-list">
         <!-- Display comments here -->
     </ul>
+    @if (Auth::check())
     <div class="new-comment-box">
         <form id="add-comment-form" name="add-comment-form">
             <div class="form-group">
@@ -14,6 +15,7 @@
             <button type="submit" class="btn btn-primary" form = "add-comment-form" >Submit</button>
           </form>
     </div>
+    @endif
 </div>
 
 
